@@ -29,6 +29,7 @@ vim ./build.sh  # maybe -- see post-receive-<something>
 ```sh
 git remote add <name> ssh://kamila@<server>/home/kamila/_git/<repo>.git
 ```
+Now you can type `git push <name> master` and watch your build/deploy :-)
 
 Optionally, set up an "all" remote to push to everything at once:
 
