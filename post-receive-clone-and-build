@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Creates a temporary clone and runs ./build.sh.
+# Part of Kamila's Git hooks (https://github.com/anotherkamila/git-hooks).
+
+set -e  # fail on error
+#set -x  # be talkative
+
+GIT_REPO="$(readlink -f "$GIT_DIR")"
+REPO_NAME="$(basename "$GIT_REPO")"
+TMP_GIT_CLONE="/tmp/builddir-$REPO_NAME"
+
+[ -d "$TMP_GIT_CLONE" ] || git clone "$GIT_REPO" "$TMP_GIT_CLONE" >&2
+cd "$TMP_GIT_CLONE"
+export GIT_DIR='.git'  # from now on, we want to work with the cloned repo's .git
+
+git pull --recurse-submodules  # update in case it is stale / from a previous clone
+. "$GIT_REPO/hooks/build.sh"
+
+exit 0
