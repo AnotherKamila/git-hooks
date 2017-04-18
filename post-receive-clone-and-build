@@ -10,11 +10,16 @@ GIT_REPO="$(readlink -f "$GIT_DIR")"
 REPO_NAME="$(basename "$GIT_REPO")"
 TMP_GIT_CLONE="/tmp/builddir-$REPO_NAME"
 
+PUSHED_BRANCH="$(cut -f3 | cut -d/ -f3)"  # post-receive gets stuff on stdin
+
 [ -d "$TMP_GIT_CLONE" ] || git clone "$GIT_REPO" "$TMP_GIT_CLONE" >&2
 cd "$TMP_GIT_CLONE"
 export GIT_DIR='.git'  # from now on, we want to work with the cloned repo's .git
 
+git fetch --all
+git checkout "$PUSHED_BRANCH"
 git pull --recurse-submodules  # update in case it is stale / from a previous clone
+
 . "$GIT_REPO/hooks/build.sh"
 
 exit 0
