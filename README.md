@@ -18,7 +18,6 @@ How to
 # on server
 cd _git  # I keep all my bare repos here
 git clone --bare <url>  # if it's not there yet
-# I keep my hooks in _git/hooks, because I tend to recycle them
 cd <repo>/hooks
 ln -s ../../git-hooks/post-receive-<something> ./post-receive
 vim ./build.sh  # maybe -- see post-receive-<something>
@@ -41,7 +40,7 @@ for url in (git remote -v | cut -f2 | cut -d' ' -f1 | sort | uniq); git remote s
 for url in $(git remote -v | cut -f2 | cut -d' ' -f1 | sort | uniq); do git remote set-url --add --push all $url ; done
 ```
 
-If you want to, set upstream to the `all` remote, so that you can `git push` there by default (for pull, fetch-url will be used):
+If you want to, set upstream to the `all` remote, so that you can `git push` there by default (for pull, `<fetch-url>` will be used):
 ```sh
 git push -u all
 ```
