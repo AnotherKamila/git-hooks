@@ -44,3 +44,9 @@ If you want to, set upstream to the `all` remote, so that you can `git push` the
 ```sh
 git push -u all
 ```
+
+"What to" / what is in this repo
+
+- `post-receive-clone-and-build`: Clones the repo into a temporary location and calls a custom script in there. Drop a `build.sh` next to `post-receive` (into `hooks/`). Example build scripts:
+  - `examples/kamila.is/build.sh`: Jekyll site (see https://github.com/AnotherKamila/kamila.is/tree/master/_bin for the actual scripts).
+  - `examples/songbook-web/build.sh`
