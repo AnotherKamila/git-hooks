@@ -45,8 +45,9 @@ If you want to, set upstream to the `all` remote, so that you can `git push` the
 git push -u all
 ```
 
-"What to" / what is in this repo
+"What to" / what useful things are in this repo
+-----------------------------------------------
 
 - `post-receive-clone-and-build`: Clones the repo into a temporary location and calls a custom script in there. Drop a `build.sh` next to `post-receive` (into `hooks/`). Example build scripts:
-  - [Jekyll](https://jekyllrb.com/) website: `examples/kamila.is/build.sh` (see https://github.com/AnotherKamila/kamila.is/tree/master/_bin for the actual scripts). Mimics GitHub pages, except that it gives you more freedom :-)
-  - Javascript single-page web application that uses npm (built with webpack): `examples/songbook-web/build.sh`
+  - [Jekyll](https://jekyllrb.com/) website: [`examples/kamila.is/build.sh`](https://github.com/AnotherKamila/git-hooks/blob/master/examples/kamila.is/build.sh) (see https://github.com/AnotherKamila/kamila.is/tree/master/_bin for the actual scripts, which you probably want to copy as well). Mimics GitHub pages, except that it gives you more freedom :-)
+  - Javascript single-page web application that uses npm (built with webpack): [`examples/songbook-web/build.sh`](https://github.com/AnotherKamila/git-hooks/blob/master/examples/songbook-web/build.sh)
