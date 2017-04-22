@@ -8,12 +8,13 @@ set -e  # fail on error
 
 GIT_REPO="$(readlink -f "$GIT_DIR")"
 REPO_NAME="$(basename "$GIT_REPO")"
-TMP_GIT_CLONE="/tmp/builddir-$REPO_NAME"
+[ -f "$GIT_REPO/hooks/settings.sh" ] && . "$GIT_REPO/hooks/settings.sh"
+CLONE_TO="${CLONE_TO:-/tmp/builddir-$REPO_NAME}"
 
 PUSHED_BRANCH="$(cut -f3 | cut -d/ -f3)"  # post-receive gets stuff on stdin
 
-[ -d "$TMP_GIT_CLONE" ] || git clone "$GIT_REPO" "$TMP_GIT_CLONE" >&2
-cd "$TMP_GIT_CLONE"
+[ -d "$CLONE_TO" ] || git clone "$GIT_REPO" "$CLONE_TO" >&2
+cd "$CLONE_TO"
 export GIT_DIR='.git'  # from now on, we want to work with the cloned repo's .git
 
 git fetch --all
