@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 DOCUMENT_ROOT='/data/www/songbook.tumbolia.tk/root/'
 
 npm update
